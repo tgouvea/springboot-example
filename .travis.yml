@@ -4,4 +4,4 @@ jdk:
 services:
   - mysql
 before_install:
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS springboot-example;'
+  - mysql -e 'CREATE DATABASE springboot-example;'
