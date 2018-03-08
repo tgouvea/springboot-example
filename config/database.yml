@@ -1,5 +1,5 @@
 test:
   adapter: mysql2
-  database: springboot-example
+  database: test
   username: root
   encoding: utf8
