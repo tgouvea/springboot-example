@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tiagogouvea.api.dtos.EmpresaDto;
 import com.tiagogouvea.api.entities.Empresa;
+import com.tiagogouvea.api.responses.Response;
 import com.tiagogouvea.api.services.EmpresaService;
 
 @RestController
@@ -21,21 +22,27 @@ public class EmpresaController {
 	EmpresaService empresaService;
 	
 	@GetMapping(value = "/{cnpj}")
-	public ResponseEntity<Empresa> buscarEmpresa (@PathVariable("cnpj") String cnpj) {
+	public ResponseEntity<Response<Empresa>> buscarEmpresa (@PathVariable("cnpj") String cnpj) {
+		
+		Response<Empresa> response = new Response<>();
 		
 		System.out.println("CNPJ: " + cnpj);
-		Empresa emp = empresaService.findByCnpj(cnpj);
+		response.setData(empresaService.findByCnpj(cnpj));
 		
-		System.out.println(emp.toString());
+		System.out.println(response.toString());
 		
-		return ResponseEntity.ok(emp);
+		return ResponseEntity.ok(response);
 	}
 	
 	@PostMapping
-	public ResponseEntity<EmpresaDto> cadastrar(@RequestBody EmpresaDto empresaDto){
+	public ResponseEntity<Response<EmpresaDto>> cadastrar(@RequestBody EmpresaDto empresaDto){
+		
+		Response<EmpresaDto> response = new Response<>();
+		
+		response.setData(empresaDto);
 		
 		
-		return ResponseEntity.ok(empresaDto);
+		return ResponseEntity.ok(response);
 	}
 	
 }
