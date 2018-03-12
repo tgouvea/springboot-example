@@ -1,6 +1,7 @@
 package com.tiagogouvea.api.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.tiagogouvea.api.entities.Empresa;
@@ -13,6 +14,7 @@ public class EmpresaServiceImpl implements EmpresaService{
 	EmpresaRepository empresaRepository;
 
 	@Override
+	@Cacheable("dadosEmpresa")
 	public Empresa findByCnpj(String cnpj) {
 		return empresaRepository.findByCnpj(cnpj);
 	}
